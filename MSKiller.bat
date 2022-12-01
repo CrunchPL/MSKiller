@@ -1,10 +1,12 @@
 @echo off
+chcp 65001
 
-   echo Wybierz, ktory program MS Office chcesz wylaczyc
+   echo Wybierz, który program MS Office chcesz wyłączyć
    echo ================================================
    echo 1) Outlook
    echo 2) Excel
    echo 3) Word
+   echo 4) Wyjdź z programu
    echo ================================================
    goto opSelect
 
@@ -13,36 +15,42 @@
    if "%op%"=="1" goto op1
    if "%op%"=="2" goto op2
    if "%op%"=="3" goto op3
-   if not "%op%"=="1-3" goto opError
+   if "%op%"=="4" goto opBye
+   if not "%op%"=="1-4" goto opError
 
    :op1
-   echo Wybrales Outlook!
+   echo Wybrałeś Outlook!
    taskkill /im OUTLOOK.EXE /t /f
    timeout 3 >nul
-   echo Gotowe! Mozesz ponownie uruchomic Outlook
+   echo Gotowe! Możesz ponownie uruchomić Outlook
    timeout 5 >nul 
    goto exit
 
    :op2
-   echo Wybrales Excel!
+   echo Wybrałeś Excel!
    taskkill /im EXCEL.EXE /t /f
    timeout 3 >nul
-   echo Gotowe! Mozesz ponownie uruchomic Excel
+   echo Gotowe! Możesz ponownie uruchomić Excel
    timeout 5 >nul
    goto exit
 
    :op3
-   echo Wybrales Word!
+   echo Wybrałeś Word!
    taskkill /im WINWORD.EXE /t /f
    timeout 3 >nul
-   echo Gotowe! Mozesz ponownie uruchomic Word
+   echo Gotowe! Możesz ponownie uruchomić Word
    timeout 5 >nul
    goto exit
 
    :opError
-   echo Podana zostala zla zawartosc, sporboj ponownie
+   echo Podana została zła wartość, spórbuj ponownie
    timeout 2 >nul
    goto opSelect
+
+   :opBye
+   echo Żegnaj!
+   timeout 2 >nul
+   goto exit
 
 :exit
 EXIT
