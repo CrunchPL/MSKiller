@@ -1,5 +1,5 @@
 @echo off
-chcp 65001
+ chcp 65001>nul
 
    echo Wybierz, który program MS Office chcesz wyłączyć
    echo ================================================
@@ -15,8 +15,17 @@ chcp 65001
    if "%op%"=="1" goto op1
    if "%op%"=="2" goto op2
    if "%op%"=="3" goto op3
-   if "%op%"=="4" goto opBye
-   if not "%op%"=="1-4" goto opError
+   if "%op%"=="4" (
+     echo Żegnaj!
+     timeout 2 >nul
+     goto exit
+    )
+
+   if not "%op%"=="1-4" (
+     echo Podana została zła wartość, spróbuj ponownie
+     timeout 2 >nul
+     goto opSelect
+    )
 
    :op1
    echo Wybrałeś Outlook!
@@ -40,16 +49,6 @@ chcp 65001
    timeout 3 >nul
    echo Gotowe! Możesz ponownie uruchomić Word
    timeout 5 >nul
-   goto exit
-
-   :opError
-   echo Podana została zła wartość, spórbuj ponownie
-   timeout 2 >nul
-   goto opSelect
-
-   :opBye
-   echo Żegnaj!
-   timeout 2 >nul
    goto exit
 
 :exit
