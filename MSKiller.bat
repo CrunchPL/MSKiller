@@ -12,6 +12,7 @@ chcp 65001
 
    :opSelect
    set /p op=Wybierz opcje: 
+<<<<<<< Updated upstream
    if "%op%"=="1" goto op1
    if "%op%"=="2" goto op2
    if "%op%"=="3" goto op3
@@ -52,5 +53,47 @@ chcp 65001
    timeout 2 >nul
    goto exit
 
+=======
+
+   if "%op%"=="1" (
+     echo Wybrałeś Outlook!
+     taskkill /im OUTLOOK.EXE /t /f
+     timeout 3 >nul
+     echo Gotowe! Możesz ponownie uruchomić Outlook
+     timeout 5 >nul 
+     goto exit
+    )
+
+   if "%op%"=="2" (
+     echo Wybrałeś Excel!
+     taskkill /im EXCEL.EXE /t /f
+     timeout 3 >nul
+     echo Gotowe! Możesz ponownie uruchomić Excel
+     timeout 5 >nul
+     goto exit
+    )
+
+   if "%op%"=="3" (
+     echo Wybrałeś Word!
+     taskkill /im WINWORD.EXE /t /f
+     timeout 3 >nul
+     echo Gotowe! Możesz ponownie uruchomić Word
+     timeout 5 >nul
+     goto exit
+    )
+
+   if "%op%"=="4" (
+     echo Żegnaj!
+     timeout 2 >nul
+     goto exit
+    )
+
+   if not "%op%"=="1-4" (
+     echo Podana została zła wartość, spróbuj ponownie
+     timeout 2 >nul
+     goto opSelect
+    )
+
+>>>>>>> Stashed changes
 :exit
 EXIT
